@@ -5,12 +5,15 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.chrome.options import Options
 import time
 import json
 import requests
 user = ""
 pwd = ""
-driver = webdriver.Chrome()
+options = Options()
+options.headless = True
+driver = webdriver.Chrome(chrome_options=options)
 wait = WebDriverWait(driver, 10)
 #driver.get("https://app.schoology.com/login")
 driver.get("https://henrico.schoology.com/home#")
