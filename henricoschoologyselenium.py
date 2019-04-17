@@ -46,7 +46,7 @@ events_details = {}
 # get tooltip for subject, and text of what is the event
 time.sleep(5)
 upcoming_or_overdue = 0
-for upcoming_or_overdue in range(0,1):
+for upcoming_or_overdue in range(0,2):
     time.sleep(4)
     upcoming_list = wait.until(expected_conditions.presence_of_all_elements_located((By.CSS_SELECTOR,".upcoming-list")))
     upcoming_list = driver.find_elements_by_css_selector('.upcoming-list')
@@ -55,7 +55,12 @@ for upcoming_or_overdue in range(0,1):
         due_or_over = "overdue"
     else:
         due_or_over = "pending"
+    item_num = 0
     for item_num in range(len(non_overdue_items)):
+        time.sleep(3)
+        upcoming_list = wait.until(expected_conditions.presence_of_all_elements_located((By.CSS_SELECTOR,".upcoming-list")))
+        upcoming_list = driver.find_elements_by_css_selector('.upcoming-list')
+        non_overdue_items = upcoming_list[upcoming_or_overdue].find_elements_by_css_selector(".upcoming-event")
         name_of_item = non_overdue_items[item_num].find_element(By.TAG_NAME,'a').get_attribute('innerHTML')
         # hover_on_object = ActionChains(driver).move_to_element(non_overdue_items[0])
         # hover_on_object.perform()
