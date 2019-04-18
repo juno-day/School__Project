@@ -12,7 +12,7 @@ import requests
 user = ""
 pwd = ""
 options = Options()
-options.headless = True
+options.headless = False
 driver = webdriver.Chrome(chrome_options=options)
 wait = WebDriverWait(driver, 10)
 #driver.get("https://app.schoology.com/login")
@@ -56,7 +56,7 @@ for upcoming_or_overdue in range(0,2):
     else:
         due_or_over = "pending"
     item_num = 0
-    for item_num in range(len(non_overdue_items)):
+    for item_num in range(len(non_overdue_items)-1):
         time.sleep(3)
         upcoming_list = wait.until(expected_conditions.presence_of_all_elements_located((By.CSS_SELECTOR,".upcoming-list")))
         upcoming_list = driver.find_elements_by_css_selector('.upcoming-list')
